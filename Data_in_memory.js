@@ -41,9 +41,67 @@ console.log(b + n.name);
  function changeM(m){
  	m.name = 'jack';	//m参数指向Obj对象，修改的是堆中的数据
  	m = new Object();	//将m的引用指向一个新的对象
+ 	m.name = 'rose'		
  	console.log(m.name);
  }
  changeA(a);
  changeM(m);
  console.log(a);		//值类型传递的是值，在函数中修改并不会影响原变量，局部变量的缘故
  console.log(m.name);	//Obj对象已经修改
+
+
+/*
+ *typeof 查看其类型
+ *instantof 查看是否是其实例
+ *Object.prototype.toString.call();查看引用的类型
+ */
+ console.log(typeof 1);
+ console.log(typeof NaN);
+ console.log(typeof Infinity);
+ console.log(typeof (1 + ''));
+ console.log(typeof '1');
+ console.log(typeof undefined);
+ console.log(typeof true);
+ console.log(typeof null);		//typeof 检查到null认为其是空对象指针
+ console.log(typeof {});
+ console.log(typeof []);
+ console.log(typeof (new Array()));
+ console.log(typeof Array);
+ console.log(typeof (function(){}));
+
+ function Obj(){
+
+ }
+ var a = new Obj();
+ console.log(a instanceof Obj);
+ console.log(Object.prototype.toString.call(a));
+ a = new Array();
+ console.log(a instanceof Array);
+ console.log(Object.prototype.toString.call(a));
+ a = new String();
+ console.log(a instanceof String);
+ console.log(Object.prototype.toString.call(a));
+ a = new Number();
+ console.log(a instanceof Number);
+ console.log(Object.prototype.toString.call(a));
+ a = new Boolean();
+ console.log(a instanceof Boolean);
+ console.log(Object.prototype.toString.call(a));
+ a = new Date();
+ console.log(a instanceof Date);
+ console.log(Object.prototype.toString.call(a));
+ a = new RegExp();
+ console.log(a instanceof RegExp);
+ console.log(Object.prototype.toString.call(a));
+
+ console.log(Object.prototype);				//Object的原型
+ console.log(Object.prototype.toString());		//Object的toString方法返回type 和 name，使用call方法修改函数的使用对象，用它来判断对象原型更好
+ console.log(Object.prototype.valueOf());		//返回的是Object的值
+ console.log(Object.prototype.valueOf.call(a));
+
+
+/*
+ *内存释放：
+ *
+ */
+ 
