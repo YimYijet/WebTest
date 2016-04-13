@@ -137,6 +137,7 @@
  	script.src = 'http://www.b.com/json/?data=' + data + '&callback=handleData';
  	document.head.appendChild(script);
  }
+ addEventListener('message',handleData,false);
 
 
 /*
