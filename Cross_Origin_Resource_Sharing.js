@@ -105,19 +105,19 @@
 
 /*
  *postMessage
- *有窗口window，contentWindow发送
+ *有窗口window，contentWindow发送，窗口必须和origin同源
  */
 // www.a.com/a.html
- postMessage('data','http://www.b.com/b.html');
+ contentWindow.postMessage('data','http://www.b.com/b.html');
  addEventListener('message',function(e){
- 	if(e.origin=='http://.b.com'){
+ 	if(e.origin=='http://www.a.com'){		//判断是否是自己接收消息
  		console.log(e.data);
  	}
  },false);
 // www.b.com/b.html
- postMessage('data','http://www.b.com/b.html');
+ parent.postMessage('data','http://www.a.com/a.html');
  addEventListener('message',function(e){
- 	if(e.origin=='http://.b.com'){
+ 	if(e.origin=='http://www.b.com'){
  		console.log(e.data);
  	}
  },false);
@@ -153,4 +153,77 @@
 
 /*
  *Fetch
+ *fetch()接受一个url作为参数，返回一个Promise对象，第二个参数是一个字面量对象
+ *Fetch提供三个接口：Headers，Request，Response
+ */
+//简单实现
+ fetch('/json').then(function(res){
+ 	if(res.ok){
+ 		res.json().then(function(data){
+ 			console.log(data.entries);
+ 		})else{
+ 			console.log(e);
+ 		}
+ 	}
+ });
+//Post请求
+ fetch('/json',{
+ 	method:'POST',
+ 	headers:{'Content-Type':'application/x-www-form-urlencoded'},
+ 	body:'a=a&b=b'
+ }).then(function(res){
+ 	if(res.ok){
+ 		res.json().then(function(data){
+ 			console.log(data.entries);
+ 		})else{
+ 			console.log(e);
+ 		}
+ 	}
+ });
+//Headers对象代表头文件，接收一个json作为参数
+ var headers = new Headers({
+ 	'Content-Type':'text/plain'
+ });
+//方法：
+ append('Content-Type','text/plain');		//向Headers中添加键值对
+ delete('Content-Type');			//删除键值对
+ entries().next().value;			//entries返回一个Iterator，next()返回一个对象包含一组键值对
+ forEach(fn);			//接收一个function作为参数，遍历Headers
+ forEach(function(i){
+	console.log(i);		//i是键值对的值
+ });
+ get('Content-Type');	//通过键得值
+ getAll('Content-Type');			//同get()，返回所有值
+ has('Content-Type');	//判断是否有这个键
+ keys();					//返回一个Iterator，next()返回一个对象包含一个键
+ values();				//返回一个Iterator，next()返回一个对象包含一个值
+ set('Content-Type','text/html');		//设置键值对，若无则添加
+//传说有一个guard属性，没有暴露给web，但影响哪些内容可以在Headers中被改变
+ 'none'			//默认
+ 'request'			//从Request获得的Headers只读
+ 'request-no-cors'			//从不同域的Request获得的Headers只读
+ 'response'			//从Response获得的Headers只读
+ 'immutable'		//所有Headers只读
+//Request请求资源，参数为url，method，headers，body，mode，credentials，cachehints
+//url为第一个参数，不可封装进字面量，其余参数封装为字面量对象作为第二个参数（可选）
+//mode属性决定是否跨域以及哪些Response可读
+ 'same-origin'		//确保请求同源，任何跨域请求返回error
+ 'no-cors'			//允许来自CDN脚本，其他域的图片，其他跨域资源，但请求method只能是'HEAD'，'GET'，'POST'资源
+ //headers不可改写，Js不能访问Response属性
+ 'cors'			//body可读，有限的headers暴露给Response
+//credentials枚举属性决定cookie是否能跨域得到有三个值：'omit'，'same-origin'，'include'
+//Response响应，通常在fetch()回调中获取
+//Response构造有两个参数，第一个为body，第二个为字面量对象，设置status，statusText，headers...
+//属性status（即HTTP响应的status）默认值为200，statusText（即HTTP响应的reason）默认值为ok，当status为2字段状态码时，response.ok为true
+//headers为响应头，url为来源url
+//type属性表示响应类型
+ 'basic'		//正常，同源请求
+ 'cors'			//响应从一个合法跨域请求获得，一部分headers，body可读
+ 'error'		//网络错误，status为0，headers为null
+ 'opaque'		//响应以'no-cors'请求的跨域资源，依靠Server端做限制
+//Response的body内容提供方法：blob()，json()，arrayBuffer()，text()
+//body只能被读一次，用clone()方法可以实现多次读取，先clone在读
+
+/*
+ *CORS
  */
