@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			font-family: 'Microsoft YaHei',Arial,Helvetica,sans-serif;
+		}
+
+		.link {
+			width: 48px;
+			height: 48px;
+			border: 1px solid #e5e9ef;
+			border-radius: 4px;
+		}
+
+		#left {					
+			background: #f6f9fa url(left.png);
+			position: absolute;
+			left: 50px;
+			top: 50%;
+			margin-top: -24px;
+		}
+
+		#left:hover {
+			background: #00a1d6 url(left-light.png);
+			position: absolute;
+			left: 50px;
+			top: 50%;
+			margin-top: -24px;
+		}
+
+		#right {
+			background: #f6f9fa url(right.png);
+			position: absolute;
+			right: 50px;
+			top: 50%;
+			margin-top: -24px;
+		}
+
+		#right:hover {
+			background: #00a1d6 url(right-light.png);
+			position: absolute;
+			right: 50px;
+			top: 50%;
+			margin-top: -24px;
+		}
+
+		#summary {
+			position: absolute;
+			bottom: 50px;
+			left: 50%;
+			width: 600px;
+			margin-left: -300px;			
+			font-size: 14px;
+			text-align: center;
+			white-space: normal;
+
+		}
+
+		img {
+			visibility: inherit;
+			width:200px;
+			height: 200px;
+		}
+
+		#div0 {
+			width: 200px;
+			height: 200px;
+			background: #66ccff;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin-top: -100px;
+			margin-left: -100px;
+		}
+
+		#div1 {
+			width: 200px;
+			height: 200px;
+			background: #ffcc66;
+			position: fixed;
+			left: 50%;
+			top: 50%;
+			margin-top: -100px;
+			margin-left: -100px;
+
+		}
+
+		#div2 {
+			width: 200px;
+			height: 200px;
+			background: #66ffcc;
+			position: absolute;
+			margin: auto;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+		}
+
+		#div3 {
+			width: 200px;
+			height: 200px;
+			background: #ff66cc;
+			position: fixed;
+			margin: auto;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+		}
+
+		#div4 {
+			width: 400px;
+			height: 400px;
+			background: #66ccff;			
+			position: absolute;
+			left: 50%;
+			top: 40%;
+			margin-top: -200px;
+			margin-left: -200px;
+		}
+
+		#div4 a {
+			width: 400px;
+			height: 400px;
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		}
+
+		#div5{
+			width: 400px;
+			height: 400px;
+			background: #ffcc66;
+			display: table;
+			position: absolute;
+			left: 50%;
+			top: 40%;
+			margin-top: -200px;
+			margin-left: -200px;
+		}
+
+		#div5 a {
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		}
+
+		#div6 {
+			width: 400px;
+			height: 400px;			
+			position: absolute;
+			border: 1px solid #e5e9ef; 
+			left: 50%;
+			top: 40%;
+			margin-top: -200px;
+			margin-left: -200px;
+		}
+
+		#div6 p {
+			line-height: 400px;
+			text-align: center;
+		}
+
+		#div7 {
+			width: 400px;
+			height: 400px;			
+			position: absolute;
+			background: #66ffcc;
+			display: -webkit-box;
+			-webkit-box-align: center;
+			-webkit-box-pack: center;
+			left: 50%;
+			top: 40%;
+			margin-top: -200px;
+			margin-left: -200px;
+		}
+
+		#div8 {
+			width: 200px;
+			height: 200px;
+			top: 50%;
+			left: 50%;
+			position: absolute;
+			background: #ff66cc;
+			transform: translate(-50%,-50%);
+		}
+
+		#div9 {
+			width: 400px;
+			height: 400px;			
+			position: absolute;
+			border: 1px solid #e5e9ef; 
+			text-align: center;
+			left: 50%;
+			top: 40%;
+			margin-top: -200px;
+			margin-left: -200px;
+		}
+
+		#div9 img {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		#div9:before {
+			content: "";
+			display: inline-block;
+			vertical-align: middle;
+			height: 100%;
+		}
+
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			var aDiv = document.querySelectorAll('div'), left = document.querySelector('#left'), 
+			right = document.querySelector('#right'), summary = document.querySelector('article');
+			(function() {
+				aDiv[0].style['visibility'] = 'visible';
+				for(var i=1; i<aDiv.length; i++) {
+				aDiv[i].style['visibility'] = 'hidden';
+				summary.innerText = aDiv[0].title;
+				}
+			})();
+			left.onclick = function() {
+				for(var i=0; i<aDiv.length; i++) {
+					if(aDiv[i].style['visibility'] == 'visible') {
+						aDiv[i].style['visibility'] = 'hidden';
+						aDiv[(i+aDiv.length-1)%aDiv.length].style['visibility'] = 'visible';
+						summary.innerText = aDiv[(i+aDiv.length-1)%aDiv.length].title;
+						break;
+					}
+				}
+				return false;
+			};
+			right.onclick = function() {
+				for(var i=0; i<aDiv.length; i++) {
+					if(aDiv[i].style['visibility'] == 'visible') {
+						aDiv[i].style['visibility'] = 'hidden';
+						aDiv[(i+aDiv.length+1)%aDiv.length].style['visibility'] = 'visible';
+						summary.innerText = aDiv[(i+aDiv.length+1)%aDiv.length].title;
+						break;
+					}
+				}
+				return false;
+			};
+		};
+	</script>
+	<title>块级居中</title>
+</head>
+<body>
+<a id="left" class="link"></a>
+<div id="div0" title="脱离文档流；优点：适合所有浏览器；缺点：块级元素必须固定大小"></div>
+<div id="div1" title="脱离文档流；优点：适合所有浏览器；缺点：块级元素必须固定大小"></div>
+<div id="div2" title="脱离文档流；优点：不用固定元素大小；缺点：IE6,7不支持"></div>
+<div id="div3" title="脱离文档流；优点：不用固定元素大小；缺点：IE6,7不支持"></div>
+<div id="div4" title="居中是相对于父元素，子元素的大小必须填满父元素，将子元素设置为单元格（table-cell）显示，如果用百分比设置大小，单元格高度是由其内部元素决定，可能无法居中，若子元素浮动（float），也无法居中。子元素内部元素若是块级元素使用{margin: 0 auto;}或{display: inline-block;}，若不是{text-align: center;}"><a><img src="test.png"></a></div>
+<div id="div5" title="父元素设置为表格（table）显示，子元素不需要填满父元素，其余同上一示例"><a><img src="test.png"></a></div>
+<div id="div6" title="文本居中，子元素行高等于父元素"><p>文本居中</p></div>
+<div id="div7" title="优点：内部所有元素都居中；缺点:CSS3规范，兼容性差">文本居中<img src="test.png"></div>
+<div id="div8" title="脱离文档流；CSS3规范，兼容性差"></div>
+<div id="div9" title="创建一个伪元素（:before）将其设置为行内块级元素（inline-block）显示，父元素要求{text-align: center;}，子元素若为块级设置为行内块级元素显示，若不是可不设置"><img src="test.png"></section></div>
+<a id="right" class="link"></a>
+<article id="summary"></article>
+</body>
+</html>
