@@ -126,7 +126,7 @@
 /*
  *Jsonp
  *script的src属性是跨源的，src最后一个参数是一个回调函数用于处理返回的js
- *传输的js多为json，请求发送给服务器，服务器返回数据
+ *传输的js多为json，请求发送给服务器，服务器返回数据，返回的js将数据放在传递过去的函数里
  */
 // www.a.com/a.html
  function handleData(response){
@@ -134,10 +134,9 @@
  }
  var script = document.createElement('script');
  function sendData(data){
- 	script.src = 'http://www.b.com/json/?data=' + data + '&callback=handleData';
+ 	script.src = 'http://www.b.com/json/?data=' + data + '&callback=handleData';	//返回数据为handleData({'data':'somedata'});听说是...
  	document.head.appendChild(script);
  }
- addEventListener('message',handleData,false);
 
 
 /*
