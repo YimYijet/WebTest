@@ -1,0 +1,54 @@
+/*float最初只是为实现文字对图片环绕而设计，当时盒模型中实现环绕方式就是破坏盒模型*/
+/*清楚float*/
+
+.clearfix:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+.clearfix {
+	zoom: 1;
+}
+
+/*以上样式一起设置，第一个通过伪元素clear:both;来清除浮动，但对IE6,7不兼容
+  IE可以通过zoom实现BFC（块级浮动上下文）/haslayout方法实现*/ 
+
+/*添加float的元素其显示方式一律变成block，同时float可以去除因代码编辑时换行符造成的元素间空隙*/
+
+/*浮动即两边皆适应的流体布局*/
+	/*左边元素*/
+	.left {
+		float: left;
+	}
+	/*右边元素套在一个块级元素内*/
+	.block {
+		display: table-cell;
+	    width: 100%; 		
+	}
+
+/*浮动与右侧尺寸固定流体布局*/
+	/*左边元素*/
+	.left {
+		
+	}
+	/*右边元素*/
+	.right {
+		float: right;
+	}	
+	/*还可以两边都浮动 左边元素*/
+	.left {
+		float: left;
+
+	}
+	/*右边元素*/
+	.right {
+		float: left;
+	}
+
+/*浮动与单侧尺寸固定的流体布局*/
+	.left {
+		float: left;
+	}
+	.right {
+		margin-left: 100px;		/*margin-left等于左边元素所占的空间的宽度，固定*/
+	}
