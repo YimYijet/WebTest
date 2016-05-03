@@ -56,7 +56,7 @@
  *Promise.race()
  *同样包装多个Promise
  */
- var p = Promise.all([p1, p2, p3]);		//当数组中最先改变的状态设置为p的状态
+ var p = Promise.race([p1, p2, p3]);		//当数组中最先改变的状态设置为p的状态
 
 
 /*
