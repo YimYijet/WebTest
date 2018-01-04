@@ -256,7 +256,7 @@
 
 /*
  *寄生式继承
- *以工厂模型封装原型是继承
+ *使用原型设计模式
  */
  function createPerson(original,job){
  	var person = Object.create(original);
@@ -295,8 +295,8 @@
  function Person(name,age,job){
  	Animal.call(this,name,age);
  	this.job = job;
- 	if(typeof Animal.prototype.work !== 'function'){
- 		Animal.prototype.work = function(){
+ 	if(typeof Person.prototype.work !== 'function'){
+ 		Person.prototype.work = function(){
  			console.log(this.name + "'s job is" + this.job);
  		}
  	}

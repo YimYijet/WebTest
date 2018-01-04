@@ -72,7 +72,7 @@
  *在一个窗口或标签页打开后即使重定向，只要不是主动修改window.name，name不变
  *同样是在同源的情况下父窗口可以访问子窗口的window.name
  *利用contentWindow.location重定向到同源的页面，注意这个网页可以是空白的，最重要的是不能更改windwo.name
- *这样就能在同源的情况下访问windwo.name
+ *这样就能在同源的情况下访问window.name
  *因为利用重定向触发两次onload事件，所以要在文档加载完调用函数
  */
 // www.a.com/a.html
