@@ -171,9 +171,9 @@
 			height: 400px;			
 			position: absolute;
 			background: #66ffcc;
-			display: -webkit-box;
-			-webkit-box-align: center;
-			-webkit-box-pack: center;
+			display: flex;
+    		justify-content: center;
+    		align-items: center;
 			left: 50%;
 			top: 40%;
 			margin-top: -200px;
@@ -207,7 +207,7 @@
 			vertical-align: middle;
 		}
 
-		#div9:before {
+		#div9::before {
 			content: "";
 			display: inline-block;
 			vertical-align: middle;
