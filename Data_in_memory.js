@@ -9,18 +9,20 @@
  *赋值运算：
  *进行的是栈内存中值的传递——就是说值类型传递的是值，引用类型传递的是指向同一块堆空间的引用
  */
-var a = 'a';
-function Obj(){
-	this.name = 'tom';
+var a = 'a'
+
+function Obj() {
+	this.name = 'tom'
 }
-var m = new Obj();
-console.log(a + m.name);
-var b = a, n = m;		//n指向的是和m同一个存放在堆中的对象
-console.log(b + n.name);
-b = 'b';
-n.name = 'jack';		//n修改了对象的值，m也会修改，因为就是同一个
-console.log(a + m.name);
-console.log(b + n.name);
+var m = new Obj()
+console.log(a + m.name)
+var b = a,
+	n = m //n指向的是和m同一个存放在堆中的对象
+console.log(b + n.name)
+b = 'b'
+n.name = 'jack' //n修改了对象的值，m也会修改，因为就是同一个
+console.log(a + m.name)
+console.log(b + n.name)
 
 
 /*
@@ -29,75 +31,77 @@ console.log(b + n.name);
  *而不是对原来引用进行操作
  *参数是局部变量
  */
- function Obj(){
- 	this.name = 'tom';
- }
- var m = new Obj();
- var a = 'a';
- function changeA(a){
- 	a = 'b';
- 	console.log(a);
- }
- function changeM(m){
- 	m.name = 'jack';	//m参数指向Obj对象，修改的是堆中的数据
- 	m = new Object();	//将m的引用指向一个新的对象
- 	m.name = 'rose'		
- 	console.log(m.name);
- }
- changeA(a);
- changeM(m);
- console.log(a);		//值类型传递的是值，在函数中修改并不会影响原变量，局部变量的缘故
- console.log(m.name);	//Obj对象已经修改
+function Obj() {
+	this.name = 'tom'
+}
+var m = new Obj()
+var a = 'a'
+
+function changeA(a) {
+	a = 'b'
+	console.log(a)
+}
+
+function changeM(m) {
+	m.name = 'jack' //m参数指向Obj对象，修改的是堆中的数据
+	m = new Object() //将m的引用指向一个新的对象
+	m.name = 'rose'
+	console.log(m.name)
+}
+changeA(a)
+changeM(m)
+console.log(a) //值类型传递的是值，在函数中修改并不会影响原变量，局部变量的缘故
+console.log(m.name) //Obj对象已经修改
 
 
 /*
  *typeof 查看其类型
  *instantof 查看是否是其实例
- *Object.prototype.toString.call();查看引用的类型
+ *Object.prototype.toString.call()查看引用的类型
  */
- console.log(typeof 1);
- console.log(typeof NaN);
- console.log(typeof Infinity);
- console.log(typeof (1 + ''));
- console.log(typeof '1');
- console.log(typeof undefined);
- console.log(typeof true);
- console.log(typeof null);		//typeof 检查到null认为其是空对象指针
- console.log(typeof {});
- console.log(typeof []);
- console.log(typeof (new Array()));
- console.log(typeof Array);
- console.log(typeof (function(){}));
+console.log(typeof 1)
+console.log(typeof NaN)
+console.log(typeof Infinity)
+console.log(typeof (1 + ''))
+console.log(typeof '1')
+console.log(typeof undefined)
+console.log(typeof true)
+console.log(typeof null) //typeof 检查到null认为其是空对象指针
+console.log(typeof {})
+console.log(typeof [])
+console.log(typeof (new Array()))
+console.log(typeof Array)
+console.log(typeof (function () {}))
 
- function Obj(){
+function Obj() {
 
- }
- var a = new Obj();
- console.log(a instanceof Obj);
- console.log(Object.prototype.toString.call(a));
- a = new Array();
- console.log(a instanceof Array);
- console.log(Object.prototype.toString.call(a));
- a = new String();
- console.log(a instanceof String);
- console.log(Object.prototype.toString.call(a));
- a = new Number();
- console.log(a instanceof Number);
- console.log(Object.prototype.toString.call(a));
- a = new Boolean();
- console.log(a instanceof Boolean);
- console.log(Object.prototype.toString.call(a));
- a = new Date();
- console.log(a instanceof Date);
- console.log(Object.prototype.toString.call(a));
- a = new RegExp();
- console.log(a instanceof RegExp);
- console.log(Object.prototype.toString.call(a));
+}
+var a = new Obj()
+console.log(a instanceof Obj)
+console.log(Object.prototype.toString.call(a))
+a = new Array()
+console.log(a instanceof Array)
+console.log(Object.prototype.toString.call(a))
+a = new String()
+console.log(a instanceof String)
+console.log(Object.prototype.toString.call(a))
+a = new Number()
+console.log(a instanceof Number)
+console.log(Object.prototype.toString.call(a))
+a = new Boolean()
+console.log(a instanceof Boolean)
+console.log(Object.prototype.toString.call(a))
+a = new Date()
+console.log(a instanceof Date)
+console.log(Object.prototype.toString.call(a))
+a = new RegExp()
+console.log(a instanceof RegExp)
+console.log(Object.prototype.toString.call(a))
 
- console.log(Object.prototype);				//Object的原型
- console.log(Object.prototype.toString());		//Object的toString方法返回type 和 name，使用call方法修改函数的使用对象，用它来判断对象原型更好
- console.log(Object.prototype.valueOf());		//返回的是Object的值
- console.log(Object.prototype.valueOf.call(a));
+console.log(Object.prototype) //Object的原型
+console.log(Object.prototype.toString()) //Object的toString方法返回type 和 name，使用call方法修改函数的使用对象，用它来判断对象原型更好
+console.log(Object.prototype.valueOf()) //返回的是Object的值
+console.log(Object.prototype.valueOf.call(a))
 
 
 /*
@@ -105,11 +109,10 @@ console.log(b + n.name);
  *当在堆内存中存储的引用类型不在有任何引用指向它，它会被标记（大多数浏览器在作用域工作完毕后，释放内部所有局部变量），并在内存回收时释放内存
  *内存释放很重要，可以节省大量资源（因为引用存储在栈中，并不会消失），释放只要把所有引用设置为null
  */
-  function Obj(){
+function Obj() {
 
- }
+}
 
- var a = new Obj();
- console.log(typeof a);
- a = null;
- 
+var a = new Obj()
+console.log(typeof a)
+a = null

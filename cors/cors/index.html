@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        fetch('http://localhost:4000/data', {
+            method: 'put',
+            credentials: 'include',
+            headers: new Headers({
+                'req-header': 'hello'
+            })
+        }).then(res => {
+            res.json().then(data => {
+                console.log(data)
+            })
+            console.log(res.headers.get('my-header'))
+        }) 
+
+        // const xhr = new XMLHttpRequest()
+        // xhr.open('PUT', 'http://localhost:4000/data')
+        // xhr.setRequestHeader('req-header', 'hello')
+        // xhr.withCredentials = true
+        // xhr.onreadystatechange = (e) => {
+        //     if (xhr.readyState == 4) {
+        //         if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+        //             console.log(xhr.response)
+        //             console.log(xhr.getResponseHeader('my-header'))
+        //         }
+        //     }
+        // }
+        // xhr.send()
+    </script>
+</body>
+</html>

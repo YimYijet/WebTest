@@ -1,0 +1,33 @@
+{
+  "name": "cors",
+  "version": "1.0.0",
+  "description": "cors ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cors"
+  ],
+  "author": "yimyijet@163.com",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.6.2",
+    "koa-cors": "^0.0.16",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "socket.io": "^2.1.1",
+    "ws": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/kcors": "^2.2.3",
+    "@types/koa": "^2.0.46",
+    "@types/koa-cors": "^0.0.0",
+    "@types/koa-router": "^7.0.33",
+    "@types/koa-static": "^4.0.0",
+    "@types/socket.io": "^2.1.0",
+    "@types/ws": "^6.0.1",
+    "kcors": "^2.2.2",
+    "typescript": "^3.1.6"
+  }
+}
