@@ -1,0 +1,14 @@
+{
+    "extends": ["tslint:recommended"],
+    "rules": {
+        "no-console": false,
+        "one-variable-per-declaration": false,
+        "semicolon": [true, "never"],
+        "quotemark": [
+            true,
+            "single",
+            "avoid-escape"
+        ],
+        "ordered-imports": false
+    }
+}
