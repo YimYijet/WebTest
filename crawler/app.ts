@@ -18,8 +18,8 @@ function getData(): Promise<any> {
             $('#detailStats tbody tr').each((index, item) => {
                 temp.push({
                     cur: $(item).find('td:first-child').text().trim(),
-                    peak: $(item).find('td:nth-child(2)').text().trim(),
                     name: $(item).find('td:last-child').text().trim(),
+                    peak: $(item).find('td:nth-child(2)').text().trim(),
                 })
             })
             resolve(temp)
