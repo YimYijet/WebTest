@@ -17,7 +17,9 @@
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "koa-views": "^6.1.4",
-    "oauth2-server": "^3.0.1"
+    "oauth2-server": "^3.0.1",
+    "sails-mongo": "^1.0.1",
+    "waterline": "^0.13.6"
   },
   "devDependencies": {
     "@types/koa": "^2.0.47",

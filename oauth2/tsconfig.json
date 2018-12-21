@@ -11,8 +11,15 @@
             "*": [
                 "node_modules/*",
                 "./*"
+            ],
+            "waterline": [
+                "typings/waterline/index.d.ts"
             ]
-        }
+        },
+        "typeRoots": [
+            "node_modules/@types",
+            "./typings"
+        ]
     },
     "include": [
         "./**/*"
