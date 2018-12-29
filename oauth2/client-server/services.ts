@@ -1,5 +1,5 @@
 import { Query } from 'mongoose'
-import User, { IUser } from '../models/user'
+import User, { IUser } from './models'
 
 class UserService {
     public static async find(): Promise<IUser[]> {

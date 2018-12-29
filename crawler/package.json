@@ -12,18 +12,18 @@
   "author": "yimyijet@163.com",
   "license": "MIT",
   "devDependencies": {
-    "@types/cheerio": "^0.22.9",
+    "@types/cheerio": "^0.22.10",
     "@types/koa": "^2.0.47",
     "@types/koa-router": "^7.0.35",
-    "@types/superagent": "^3.8.4",
-    "nodemon": "^1.18.6",
-    "tslint": "^5.11.0",
-    "typescript": "^3.1.6"
+    "@types/superagent": "^3.8.5",
+    "nodemon": "^1.18.9",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "koa": "^2.6.2",
     "koa-router": "^7.4.0",
-    "superagent": "^4.0.0"
+    "superagent": "^4.1.0"
   }
 }

@@ -10,7 +10,7 @@ export interface IOpts {
 }
 
 export const dbPath: IOpts = {
-    db: 'oauth',
+    db: 'mongotest',
     url: 'mongodb://localhost:27017',
 }
 
@@ -33,7 +33,7 @@ export class Schema extends mongoose.Schema {
     constructor(definition: mongoose.SchemaDefinition, options?: mongoose.SchemaOptions) {
         super(definition, {
             ...options,
-            toObject: {
+            toObject: { 
                 transform(doc: any, ret: any) {
                     ret.id = doc.id
                     delete ret._id

@@ -3,7 +3,7 @@ import * as OAuth2Server from 'oauth2-server'
 import { Context } from 'koa'
 
 import { IUser } from './models/user'
-import { create } from './services/user'
+import userService from './services/user'
 const router = new Router()
 
 router.get('/authorize', async (ctx: Context): Promise<void> => {
@@ -18,8 +18,8 @@ router.get('/token', async (ctx: Context): Promise<void> => {
 
 router.post('/users', async (ctx: Context): Promise<void> => {
     console.log(ctx.request.body)
-    const item = ctx.request.body as IUser
+    const item: IUser = ctx.request.body as IUser
     console.log(item)
-    ctx.body = await create(item)
+    ctx.body = await userService.create(item)
 })
 export default router
