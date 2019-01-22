@@ -22,7 +22,7 @@ router.get('/', async (ctx: Context): Promise<void> => {
 router.get('/login', async (ctx: Context): Promise<void> => {
     const params: AuthorizeParam = {
         response_type: 'code',
-        client_id: 'client3000',
+        client_id: '5c2d819adfca8f1744c30149',
         state: 'hello',
         redirect_uri: 'http://localhost:3000/oauth/redirect',
         scope: 'user,data'
@@ -34,7 +34,7 @@ router.get('/oauth/redirect', async (ctx: Context): Promise<void> => {
     const query = ctx.query,
     params: TokenParam = {
         response_type: 'authorization_code',
-        client_id: 'client3000',
+        client_id: '5c2d819adfca8f1744c30149',
         redirect_uri: 'http://localhost:3000/oauth/redirect',
         code: query.code
     }, url: string = 'http://localhost:4000/token'

@@ -25,9 +25,10 @@ const OAuth2ServerModel: OAuth2Server.AuthorizationCodeModel = {
      * Invoked to retrieve a client using a client id or a client id/client secret combination, depending on the grant type.
      */    
     getClient: async (clientId: string, clientSecret: string, callback?: OAuth2Server.Callback<OAuth2Server.Client | OAuth2Server.Falsey>): Promise<OAuth2Server.Client | OAuth2Server.Falsey> => {
+        console.log('clientId:', clientId)
         let client: OAuth2Server.Client
         try {
-            const result = await clientService.findOne( clientSecret ? { clientId, clientSecret } : { clientId })
+            const result: IClient = await clientService.findOne( clientSecret ? { _id: clientId, clientSecret } : { _id: clientId })
             if (!result) {
                 throw new Error('client not found')
             } else {
@@ -85,7 +86,7 @@ const OAuth2ServerModel: OAuth2Server.AuthorizationCodeModel = {
     getAccessToken: async (accessToken: string, callback?: OAuth2Server.Callback<OAuth2Server.Token>): Promise<OAuth2Server.Token | OAuth2Server.Falsey> => {
         let token: OAuth2Server.Token
         try {
-            const result = await TokenService.findOne({ accessToken })
+            const result: IToken = await TokenService.findOne({ accessToken })
             if (!result) {
                 throw new Error('token not found')
             } else if (checkType<IClient>(result.client)) {
@@ -126,7 +127,7 @@ const OAuth2ServerModel: OAuth2Server.AuthorizationCodeModel = {
     getAuthorizationCode: async (authorizationCode: string, callback?: OAuth2Server.Callback<OAuth2Server.AuthorizationCode>): Promise<OAuth2Server.AuthorizationCode | OAuth2Server.Falsey> => {
         let code: OAuth2Server.AuthorizationCode
         try {
-            const result = await AuthorizationCodeService.findOne({ authorizationCode })
+            const result: IAuthorizationCode = await AuthorizationCodeService.findOne({ authorizationCode })
             if (!result) {
                 throw new Error('authorization code not found')
             } else if (checkType<IClient>(result.client)) {
