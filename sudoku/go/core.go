@@ -29,7 +29,7 @@ func getRandNum(numbers []int) (num int) {
 	return 
 }
 
-func fliterNum(main []int, minus []int) (result []int) {
+func fliterNum(main, minus []int) (result []int) {
 	len, l := len(minus), len(main)
 	if len == 0 {
 		result = main
