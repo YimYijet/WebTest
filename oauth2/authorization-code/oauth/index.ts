@@ -5,12 +5,11 @@ import * as http from 'http'
 import * as path from 'path'
 
 import router from './router'
-
 import { connectDB } from './db'
 
 const app = new Koa()
 
-app.use(views(path.join(__dirname, '')))
+app.use(views(path.join(__dirname, 'views')))
 
 app.use(bodyParser())
 

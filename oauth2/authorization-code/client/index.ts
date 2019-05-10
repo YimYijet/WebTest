@@ -8,7 +8,7 @@ import router from './router'
 
 const app = new Koa()
 
-app.use(views(path.join(__dirname, ''), { extension: 'ejs'}))
+app.use(views(path.join(__dirname, 'views'), { extension: 'ejs'}))
 
 app.use(bodyParser())
 

@@ -3,7 +3,8 @@ import mongoose, { Schema } from '../db'
 export interface IClient extends mongoose.Document {
     clientName: string
     clientSecret?: string
-    redirectUris: string
+    redirectUris?: string
+    grants?: string[]
     accessTokenLifetime: number
     refreshTokenLifetime: number
 }
@@ -14,11 +15,16 @@ export const ClientSchema = new Schema({
         type: String,
     },
     clientSecret: {
+        required: true,
         type: String,
     },
     redirectUris: {
         required: true,
         type: String,
+    },
+    grants: {
+        required: true,
+        type: Array,
     },
     accessTokenLifetime: {
         required: true,

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login</title>
+    <style>
+        .label label{
+            display: inline-block;
+            width: 110px;
+            text-align: right;
+        }
+        .button {
+            margin-left: 60px;
+            width: 190px;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        <div class="label">
+            <label for="name">用户名</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <div class="label">
+            <label for="password">密码</label>
+            <input type="password" name="password" id="password">
+        </div>
+    </form>
+    <input type="button" class="button" value="登录" onclick="submit()">
+    <script>
+        function submit(e) {
+            const form = document.querySelector('form'), formData = {
+                name: form['name'].value,
+                password: form['password'].value
+            }
+            fetch(location.href, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer NWNkM2UwYWQ4NmE5Y2YwM2JjNWE5NmIxOmxnb2lu'
+                },
+                body: JSON.stringify(formData)
+            }).then(res => {
+                
+            })
+        }
+    </script>
+</body>
+</html>

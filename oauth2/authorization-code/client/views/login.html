@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .label label{
+            display: inline-block;
+            width: 110px;
+            text-align: right;
+        }
+        .button {
+            margin-left: 60px;
+            width: 190px;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        <div class="label">
+            <label for="clientId">ClientId</label>
+            <input type="text" name="clientId" id="clientId">
+        </div>
+        <div class="label">
+            <label for="redirectUris">RedirectUrl</label>
+            <input type="text" name="redirectUris" id="redirectUris">
+        </div>
+    </form>
+    <input type="button" class="button" value="Login" onclick="submit()">
+    <script>
+        function submit(e) {
+            const form = document.querySelector('form'), params = {
+                client_id: form['clientId'].value,
+                redirectUris: encodeURIComponent(form['redirectUris'].value)
+            }
+
+            function getParams() {
+                return Object.keys(params).map((item) => {
+                    return `${item}=${params[item]}`
+                }).join('&')
+            }
+
+            window.open(`http://localhost:4000/authorize?${getParams()}`, '_blank')
+        }
+    </script>
+</body>
+</html>

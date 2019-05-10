@@ -1,11 +1,11 @@
 import * as Router from 'koa-router'
-import { Context } from 'koa'
+import { BaseContext } from 'koa'
 
 import { AuthorizeParam, TokenParam } from './types'
 
 const router = new Router()
 
-function redirect(ctx: Context, url: string, params: any): void {
+function redirect(ctx: BaseContext, url: string, params: any): void {
     const str: string[] = []
     for (let item in params) {
         str.push(`${item}=${item === 'redirect_uri' ? encodeURIComponent(params[item]): params[item]}`)
@@ -13,13 +13,11 @@ function redirect(ctx: Context, url: string, params: any): void {
     ctx.redirect(`${url}?${str.join('&')}`)
 }
 
-router.get('/', async (ctx: Context): Promise<void> => {
-    await ctx.render('client.ejs', {
-        text: 'not login'
-    })
+router.get('/', async (ctx: BaseContext): Promise<void> => {
+    await ctx.render('login.html')
 })
 
-router.get('/login', async (ctx: Context): Promise<void> => {
+router.get('/login', async (ctx: BaseContext): Promise<void> => {
     const params: AuthorizeParam = {
         response_type: 'code',
         client_id: '5c2d819adfca8f1744c30149',
@@ -30,7 +28,7 @@ router.get('/login', async (ctx: Context): Promise<void> => {
     redirect(ctx, url, params)
 })
 
-router.get('/oauth/redirect', async (ctx: Context): Promise<void> => {
+router.get('/oauth/redirect', async (ctx: BaseContext): Promise<void> => {
     const query = ctx.query,
     params: TokenParam = {
         response_type: 'authorization_code',
@@ -41,7 +39,7 @@ router.get('/oauth/redirect', async (ctx: Context): Promise<void> => {
     redirect(ctx, url, params)
 })
 
-router.get('/data', async (ctx: Context): Promise<void> => {
+router.get('/data', async (ctx: BaseContext): Promise<void> => {
     ctx.body = 'gun'
 })
 
