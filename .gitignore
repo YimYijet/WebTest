@@ -2,3 +2,6 @@
 /crawler/node_modules/
 /oauth2/node_modules/
 /crawler/dist/
+*.out.*
+*.out
+ipch

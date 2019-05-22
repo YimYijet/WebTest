@@ -4,14 +4,18 @@ import TokenService from '../services/token'
 import { IClient } from '../models/client'
 import { IToken } from '../models/token'
 
-import { encrypt } from '../utils/util'
-
 export const model: OAuth2Server.BaseModel = {
 
     getClient: async (clientId: string, clientSecret: string, callback?: OAuth2Server.Callback<OAuth2Server.Client | OAuth2Server.Falsey>): Promise<OAuth2Server.Client | OAuth2Server.Falsey> => {
         console.log('getClient:', clientId, clientSecret)
         try {
-            const result: IClient = (await clientService.findOne({ _id: clientId, clientSecret: encrypt(clientSecret) })).toObject()
+            const param = clientSecret ? {
+                _id: clientId,
+                clientSecret,
+            } : {
+                _id: clientId,
+            }
+            const result: IClient = (await clientService.findOne(param)).toObject()
             if (!result) {
                 throw new Error('client not found')
             } else {

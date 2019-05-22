@@ -5,8 +5,8 @@ class AuthorizationCodeService {
 
     public static async findOne(query: any): Promise<IAuthorizationCode> {
         return AuthorizationCode.findOne(query)
-        .populate('User')
-        .populate('Client')
+        .populate('user')
+        .populate('client')
         .exec()
     }
     public static async create(item: IAuthorizationCode): Promise<IAuthorizationCode> {
@@ -14,7 +14,7 @@ class AuthorizationCodeService {
         return code.save()
     }
     public static async remove(query: any): Promise<any> {
-        return AuthorizationCode.remove(query).exec()
+        return AuthorizationCode.deleteOne(query)
     }
 }
 

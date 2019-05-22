@@ -13,7 +13,7 @@ const router = new Router()
 
 app.use(bodyParser())
 
-router.post('/users', async (ctx: Koa.Context) => {
+router.post('/users', async (ctx: Koa.BaseContext) => {
     const item: IUser = ctx.request.body as IUser, 
     user: IUser = await UserService.create(item) as IUser
     ctx.body = user._id

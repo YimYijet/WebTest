@@ -5,8 +5,8 @@ class TokenService {
 
     public static async findOne(query: any): Promise<IToken> {
         return Token.findOne(query)
-        .populate('User')
-        .populate('Client')
+        .populate('user')
+        .populate('client')
         .exec()
     }
     public static async create(item: IToken): Promise<IToken> {

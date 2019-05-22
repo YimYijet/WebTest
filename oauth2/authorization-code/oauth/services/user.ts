@@ -16,7 +16,7 @@ class UserService {
         return user.save()
     }
     public static async remove(query: any): Promise<any> {
-        return User.remove(query).exec()
+        return User.deleteOne(query)
     }
     public static async update(query: any, item: any): Promise<IUser> {
         return User.findOneAndUpdate(query, item, { new: true })

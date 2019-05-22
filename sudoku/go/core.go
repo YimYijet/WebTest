@@ -1,9 +1,9 @@
-package main 
+package main
 
 import (
 	"fmt"
-	"time"
 	"math/rand"
+	"time"
 )
 
 type Coordinate struct {
@@ -24,9 +24,9 @@ type ISudoku interface {
 }
 
 func getRandNum(numbers []int) (num int) {
-	len, r:= len(numbers), rand.New(rand.NewSource(time.Now().UnixNano()))
+	len, r := len(numbers), rand.New(rand.NewSource(time.Now().UnixNano()))
 	num = numbers[r.Intn(len)]
-	return 
+	return
 }
 
 func fliterNum(main, minus []int) (result []int) {
@@ -37,7 +37,7 @@ func fliterNum(main, minus []int) (result []int) {
 	}
 	for i := 0; i < l; i++ {
 		for j := 0; j < len; j++ {
-			if j == len - 1 && main[i] != minus[j] {
+			if j == len-1 && main[i] != minus[j] {
 				result = append(result, main[i])
 			}
 			if main[i] == minus[j] {
@@ -56,26 +56,26 @@ func (s Sudoku) GetSudoku() (points [9][9]int) {
 func (s *Sudoku) CreateSudoku() {
 	var stack [81][]int
 	var tmp []int
-	nums, c := [9]int {1, 2, 3, 4, 5, 6, 7, 8, 9}, Coordinate{x: 0, y: 0}
-	for c.y <=8 {
-		index := c.y * 9 + c.x
+	nums, c := [9]int{1, 2, 3, 4, 5, 6, 7, 8, 9}, Coordinate{x: 0, y: 0}
+	for c.y <= 8 {
+		index := c.y*9 + c.x
 		tmp = fliterNum(nums[:], (*s).getColNums(c))
 		tmp = fliterNum(tmp, (*s).getRowNums(c))
 		tmp = fliterNum(tmp, (*s).getCellNums(c))
 		tmp = fliterNum(tmp, stack[index])
 		if len(tmp) != 0 {
 			(*s).points[c.y][c.x] = getRandNum(tmp)
-			if c.x + 1 == 9 {
-				c.y += 1
+			if c.x+1 == 9 {
+				c.y++
 			}
 			c.x = (c.x + 1) % 9
 		} else {
-			stack[index] = []int {}
-			if c.x - 1 == -1 {
-				c.y -= 1
+			stack[index] = []int{}
+			if c.x-1 == -1 {
+				c.y--
 			}
 			c.x = (c.x + 8) % 9
-			stack[index - 1] = append(stack[index - 1], ((*s).points[c.y][c.x]))
+			stack[index-1] = append(stack[index-1], ((*s).points[c.y][c.x]))
 		}
 	}
 }
@@ -96,7 +96,7 @@ func (s Sudoku) getRowNums(c Coordinate) (result []int) {
 
 func (s Sudoku) getCellNums(c Coordinate) (result []int) {
 	subX := c.x / 3 * 3
-	supX, subY := subX + 3, c.y /3 * 3
+	supX, subY := subX+3, c.y/3*3
 	for i := subY; i < c.y; i++ {
 		for j := subX; j < supX; j++ {
 			result = append(result, s.points[i][j])

@@ -25,7 +25,7 @@
         </div>
         <div class="label">
             <label for="redirectUris">RedirectUrl</label>
-            <input type="text" name="redirectUris" id="redirectUris">
+            <input type="text" name="redirect_uri" id="redirectUris">
         </div>
     </form>
     <input type="button" class="button" value="Login" onclick="submit()">
@@ -33,7 +33,11 @@
         function submit(e) {
             const form = document.querySelector('form'), params = {
                 client_id: form['clientId'].value,
-                redirectUris: encodeURIComponent(form['redirectUris'].value)
+                redirect_uri: encodeURIComponent(form['redirectUris'].value),
+                grant_type: 'authorization_code',
+                state: '123',
+                response_type: 'code',
+                scope: 'user'
             }
 
             function getParams() {

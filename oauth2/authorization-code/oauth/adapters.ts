@@ -40,17 +40,17 @@ export function authenticate(opt: AuthenticateOpt = {}): Function {
 export function authorize(opt: AuthorizeOpt = {}): Function {
     return async function (ctx: Context, next: () => void) {
         console.log('authorize')
-        const request = new OAuth2Server.Request(ctx.req),
+        const request = new OAuth2Server.Request(ctx.request),
         response = new OAuth2Server.Response(ctx.response)
-        oauth.authorize(request, response, opt).then((token) => {
-            console.log(token)
-            return next()
-        }).catch((err) => {
-            console.log(err)
-            ctx.body = {
-                code: err.status,
-                message: err.message
-            }
-        })
+        return oauth.authorize(request, response, opt)
+    }
+}
+
+export function token(opt: TokenOpt = {}): Function {
+    return async function (ctx: Context, next: () => void) {
+        console.log('token')
+        const request = new OAuth2Server.Request(ctx.request),
+        response = new OAuth2Server.Response(ctx.response)
+        return oauth.token(request, response, opt)
     }
 }

@@ -16,7 +16,7 @@ class ClientService {
         return client.save()
     }
     public static async remove(query: any): Promise<any> {
-        return Client.remove(query).exec()
+        return Client.deleteOne(query)
     }
     public static async update(query: any, item: any): Promise<IClient> {
         return Client.findOneAndUpdate(query, item, { new: true })
