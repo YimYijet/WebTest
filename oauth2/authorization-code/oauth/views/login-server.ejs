@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login</title>
+    <style>
+        .label label{
+            display: inline-block;
+            width: 110px;
+            text-align: right;
+        }
+        .button {
+            margin-left: 60px;
+            width: 190px;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        <div class="label">
+            <label for="username">用户名</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div class="label">
+            <label for="password">密码</label>
+            <input type="password" name="password" id="password">
+        </div>
+    </form>
+    <input type="button" class="button" value="登录" onclick="submit()">
+    <script>
+        function getParams(v) {
+            return Object.keys(v).map((item) => {
+                return `${item}=${v[item]}`
+            }).join('&')
+        }
+
+        async function submit(e) {
+            const form = document.querySelector('form'), formData = {
+                username: form['username'].value,
+                password: form['password'].value,
+                scope: 'user',
+                grant_type: 'password'
+            }
+
+            const token = await (await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': '<%=auth%>'
+                },
+                body: getParams(formData)
+            })).json()
+            console.log(token)
+        }
+    </script>
+</body>
+</html>

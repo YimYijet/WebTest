@@ -4,7 +4,7 @@ import * as bodyParser from 'koa-bodyparser'
 import * as http from 'http'
 
 import { connectDB } from './db'
-import { IUser } from './models';
+import { IUser } from './models'
 import UserService from './services'
 
 const app = new Koa()

@@ -1,12 +1,11 @@
-import { Query } from 'mongoose'
 import RefreshToken, { IRefreshToken } from '../models/refreshToken'
 
 class RefreshTokenService {
 
     public static async findOne(query: any): Promise<IRefreshToken> {
         return RefreshToken.findOne(query)
-        .populate('User')
-        .populate('Client')
+        .populate('user')
+        .populate('client')
         .exec()
     }
     public static async create(item: IRefreshToken): Promise<IRefreshToken> {

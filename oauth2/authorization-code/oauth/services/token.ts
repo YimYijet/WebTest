@@ -1,4 +1,3 @@
-import { Query } from 'mongoose'
 import Token, { IToken } from '../models/token'
 
 class TokenService {

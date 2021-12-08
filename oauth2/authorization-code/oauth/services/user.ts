@@ -1,4 +1,3 @@
-import { Query } from 'mongoose'
 import User, { IUser } from '../models/user'
 
 class UserService {

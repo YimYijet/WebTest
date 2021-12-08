@@ -1,5 +1,5 @@
 import mongoose, { Schema } from './db'
-import { Types } from 'mongoose';
+import { Types } from 'mongoose'
 
 export interface IUser extends mongoose.Document {
     id: Types.ObjectId | string

@@ -31,15 +31,10 @@ router.get('/login', async (ctx: BaseContext): Promise<void> => {
 
 router.get('/oauth/redirect', async (ctx: BaseContext): Promise<void> => {
     const query = ctx.query,
-    params = {
-        client_id: constants.clientId,
-        client_secrect: constants.clientSecret,
-        redirect_uri: 'http://localhost:3000/oauth/redirect',
-        state: '123',
-    }, url: string = 'http://localhost:4000/token'
+        url: string = 'http://localhost:4000/token'
     
     const data = await request({
-        url: `${url}?${stringify(params)}`,
+        url,
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -48,7 +43,9 @@ router.get('/oauth/redirect', async (ctx: BaseContext): Promise<void> => {
         body: stringify({
             grant_type: 'authorization_code',
             code: query.code,
-            scope: 'user'
+            scope: 'user',
+            redirect_uri: 'http://localhost:3000/oauth/redirect',
+            state: '123',
         })
     })
     ctx.body = data

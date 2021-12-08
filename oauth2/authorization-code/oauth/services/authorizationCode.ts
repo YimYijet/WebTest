@@ -1,4 +1,3 @@
-import { Query } from 'mongoose'
 import AuthorizationCode, { IAuthorizationCode } from '../models/authorizationCode'
 
 class AuthorizationCodeService {

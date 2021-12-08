@@ -14,6 +14,10 @@ import { encrypt } from './utils/util'
 const router = new Router()
 
 // router.use(['/users'], authenticate())
+router.get('/login', async (ctx: BaseContext, next: () => void) => {
+    await ctx.render('login-server.ejs', { auth: 'Basic ' + Buffer.from(`${constants.clientId}:${constants.clientSecret}`).toString('base64') })
+})
+
 router.post('/login', async (ctx: BaseContext, next: () => void) => {
     try {
         const token = await adapters.token()(ctx)
@@ -29,7 +33,6 @@ router.post('/login', async (ctx: BaseContext, next: () => void) => {
             message: err.message
         }
     }
-
 })
 
 router.get('/authorize', async (ctx: BaseContext): Promise<void> => {
